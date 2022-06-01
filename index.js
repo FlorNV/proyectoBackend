@@ -8,6 +8,7 @@ app.use(express.json());
 app.use(cors({origin: 'http://localhost:4200'}));
 
 app.use('/api/libro', require('./routes/libro.route.js'));
+app.use('/api/transaccion', require('./routes/transaccion.route.js'));
 
 app.set('port', process.env.PORT || 3000);
 
