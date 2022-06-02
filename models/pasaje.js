@@ -4,7 +4,7 @@ const Persona = require('./persona');
 
 const PasajeSchema = new Schema({
     precioPasaje: {type: Number, required: true},
-    categoriaPasajero: {type: String, required: true},//puede ser: m = Menor, a = Adulto, j= Jubilado.
+    categoriaPasajero: {type: String, required: true},
     fechaCompra: {type: String, required: true},
     pasajero: {type: Schema.Types.ObjectId, ref: Persona, required: true}
 })
