@@ -1,0 +1,29 @@
+<div class="container-fluid p-0 my-0">
+    
+    <div class="slider position-relative text-center">
+        <img class="img-fluid imagen-fondo" src="{{ libro.imagen }}">
+        <div class="contenido position-absolute bottom-0 top-0 start-0 end-0">
+            <img class="img-fluid imagen" src="{{ libro.imagen }}">
+            <div class="detalles position-absolute bottom-0 start-50 translate-middle-x text-start">
+                <h3>{{ libro.titulo }}</h3>
+                <p>{{ libro.descripcion }}</p>
+            </div>
+        </div>
+        <div class="btn-container position-absolute top-50 start-50 translate-middle">
+            <button class="btn btn-secondary shadow-none" type="button" (click)="anterior()">
+                <i class="bi bi-chevron-left"></i>
+            </button>
+            <button class="btn btn-secondary shadow-none" type="button" (click)="siguiente()">
+                <i class="bi bi-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+    <ol class="list-unstyled text-center my-3">
+        <li *ngFor="let libro of libros" [ngClass]="{'active': indice==getIndice(libro)}" 
+        (click)="activar(getIndice(libro))" class="d-inline-block rounded-circle mx-2 indicator-item"></li>
+    </ol>
+    
+    <button (click)="llamarFormAgregarLibro()" class="btn btn-agregar shadow-none m-4" type="button">
+        <i class="bi bi-plus-circle me-3"></i>Agregar un libro
+    </button>
+</div>

@@ -1,0 +1,9 @@
+.form-check-input:checked {
+    background-color: #3D5A80;
+    border-color: #3D5A80;
+}
+
+.btn-agregar {
+    background-color: #3D5A80;
+    color: #fff;
+}

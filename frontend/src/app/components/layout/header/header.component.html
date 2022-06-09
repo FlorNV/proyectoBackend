@@ -1,0 +1,17 @@
+<header class="p-2 bg-header fixed-top">
+    <nav class="navbar navbar-expand-md navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" [routerLink]="['/home']">HOME</a>
+            <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-link mx-md-3" [routerLink]="['/libros']">Libros</a>
+                    <a class="nav-link mx-md-3" [routerLink]="['/transacciones']">Transacciones</a>
+                    <a class="nav-link mx-md-3" [routerLink]="['/pasajes']">Pasajes</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
