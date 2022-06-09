@@ -1,0 +1,82 @@
+<div class="container py-5">
+  <form #libroForm="ngForm" method="post" class="row g-3 bg-white px-5 py-4 mx-4 rounded-3">
+      <h3 class="col-12">Nuevo Libro</h3>
+
+      <div class="col-md-6">
+        <label for="titulo" class="form-label">Título del libro</label>
+        <input type="text" id="titulo" class="form-control" placeholder="Escribe el título del libro"
+        [(ngModel)]="libro.titulo" name="titulo" required #titulo="ngModel"
+        [ngClass]="{'border-danger': titulo.invalid && (titulo.dirty || titulo.touched)}">
+
+        <div *ngIf="titulo.invalid && (titulo.dirty || titulo.touched) && titulo.errors?.['required']" class="form-text text-danger">
+          <i class="bi bi-exclamation-circle"></i> El título es requerido.
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <label for="imagen" class="form-label">Tapa del libro</label>
+        <input type="url" id="imagen" class="form-control" placeholder="Ingresa la url de la tapa del libro" 
+        [(ngModel)]="libro.imagen" name="imagen" required url-valida #imagen="ngModel"
+        [ngClass]="{'border-danger': imagen.invalid && (imagen.dirty || imagen.touched)}">
+
+        <div *ngIf="imagen.invalid && (imagen.dirty || imagen.touched)">
+          <div *ngIf="imagen.errors?.['required']" class="form-text text-danger">
+            <i class="bi bi-exclamation-circle"></i> La url es requerida.
+          </div>
+          <div *ngIf="imagen.errors?.['urlValida']" class="form-text text-danger">
+            <i class="bi bi-exclamation-circle"></i> Ingresa una url válida.
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <label for="descripcion" class="form-label">Descripción</label>
+        <textarea class="form-control" id="descripcion" cols="30" rows="3" placeholder="Escribe una descripción del libro" 
+        [(ngModel)]="libro.descripcion" name="descripcion" required #descripcion="ngModel"
+        [ngClass]="{'border-danger': descripcion.invalid && (descripcion.dirty || descripcion.touched)}"></textarea>
+
+        <div *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched) && descripcion.errors?.['required']" class="form-text text-danger">
+          <i class="bi bi-exclamation-circle"></i> Proporciona una descripción para el libro.
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <label for="stock" class="form-label">Stock</label>
+        <input type="number" id="stock" class="form-control" placeholder="Ingresa stock" 
+        [(ngModel)]="libro.stock" name="stock" required min="1" #stock="ngModel"
+        [ngClass]="{'border-danger': stock.invalid && (stock.dirty || stock.touched)}">
+
+        <div *ngIf="stock.invalid && (stock.dirty || stock.touched)">
+          <div *ngIf="stock.errors?.['required']" class="form-text text-danger">
+            <i class="bi bi-exclamation-circle"></i> El stock es requerido.
+          </div>
+          <div *ngIf="stock.errors?.['min']" class="form-text text-danger">
+            <i class="bi bi-exclamation-circle"></i> Debe haber al menos un libro en stock.
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 ms-md-5">
+        <label for="destacado" class="form-label d-block">¿Es destacado?</label>
+        <div class="form-check d-inline-block">
+            <input class="form-check-input" type="radio" id="esdestacado" 
+            [(ngModel)]="libro.destacado" name="destacado" value="true" required #destacado="ngModel">
+            <label class="form-check-label" for="esdestacado">Sí</label>
+        </div>
+        <div class="form-check d-inline-block ms-5">
+            <input class="form-check-input" type="radio" id="nodestacado" 
+            [(ngModel)]="libro.destacado" name="destacado" value="false" required #destacado="ngModel">
+            <label class="form-check-label" for="nodestacado">No</label>
+        </div>
+
+        <div *ngIf="destacado.errors?.['required']" class="form-text text-danger">
+          <i class="bi bi-exclamation-circle"></i> Este valor es requerido.
+        </div>
+      </div>
+
+
+      <div class="col-12 text-center mt-5">
+        <button (click)="agregarLibro()" type="submit" class="btn btn-agregar px-5" [disabled]="!libroForm.valid">Agregar Libro</button>
+      </div>
+  </form>
+</div>

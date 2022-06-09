@@ -1,0 +1,46 @@
+.bg-footer {
+    background-color: #3D5A80;
+}
+
+#nombre-pagina {
+    letter-spacing: 4px;
+    font-weight: 700;
+}
+
+footer a {
+    text-decoration: none;
+    color: #fff;
+    transition: color .3s;
+}
+
+.red-social-group {
+    margin-top: 2rem;
+}
+
+.red-social-item {
+    margin: 0 0.5rem !important;
+    display: inline-block;
+    font-size: 1.8rem;
+    transition: transform 0.5s ease;
+}
+
+.red-social-item:hover {
+    transform: translateY(-4px);
+}
+
+.list-item {
+    line-height: 2;
+}
+
+footer a:hover {
+    color: #E07A5F;
+}
+
+footer p {
+    color: #fff;
+}
+
+hr {
+    border-top: 2px solid #aaa;
+    margin: 0 2rem 1rem;
+} 
