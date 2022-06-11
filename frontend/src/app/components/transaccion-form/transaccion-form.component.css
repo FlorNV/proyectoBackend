@@ -1,0 +1,8 @@
+.resultado {
+    background-color: #fff !important;
+    padding: 1rem;
+    border-radius: .25rem;
+    border: 1px solid #ced4da;
+    color: #000;
+    font-size: 1.5rem;
+}

@@ -1,0 +1,67 @@
+<main class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <form #divisaForm="ngForm" id="conversor" class="p-5 bg-white rounded-3">
+                <h4>Conversor de Divisas</h4>
+                <div class="mb-3">
+                    <label for="amount" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="amount" placeholder="Ingresa Email"
+                        [(ngModel)]="email" name="email" #correo="ngModel" required email
+                        [ngClass]="{'border-danger': correo.invalid && (correo.dirty || correo.touched)}">
+
+                    <div *ngIf="correo.invalid && (correo.dirty || correo.touched)" >
+                        <div *ngIf="correo.errors?.['required']" class="form-text text-danger">
+                            <i class="bi bi-exclamation-circle"></i> Proporcione una dirección de correo electrónico.
+                        </div>
+                        <div *ngIf="correo.errors?.['email']" class="form-text text-danger">
+                            <i class="bi bi-exclamation-circle"></i> Proporcione una dirección de correo electrónico válida.
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="amount" class="form-label">Cantidad</label>
+                    <input type="number" class="form-control" id="amount" placeholder="Cantidad" step="any"
+                        [(ngModel)]="amount" name="cantidad" #cantidad="ngModel" required min="1"
+                        [ngClass]="{'border-danger': cantidad.invalid && (cantidad.dirty || cantidad.touched)}">
+
+                    <div *ngIf="cantidad.invalid && (cantidad.dirty || cantidad.touched)" >
+                        <div *ngIf="cantidad.errors?.['required']" class="form-text text-danger">
+                            <i class="bi bi-exclamation-circle"></i> Ingrese el monto.
+                        </div>
+                        <div *ngIf="cantidad.errors?.['min']" class="form-text text-danger">
+                            <i class="bi bi-exclamation-circle"></i> El monto debe ser mayor a 0.
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="from" class="form-label">De</label>
+                    <select id="from" class="form-select form-control" [(ngModel)]="from" name="from"
+                            [ngClass]="{'border-danger': de.invalid && (de.dirty || de.touched)}" required #de="ngModel">
+                        <option *ngFor="let d of divisas" [ngValue]="d.codigo">{{ d.nombre }}</option>
+                    </select>
+                    <div *ngIf="de.invalid && (de.dirty || de.touched) && de.errors?.['required']" class="form-text text-danger">
+                        <i class="bi bi-exclamation-circle"></i> Seleccione divisa.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="to" class="form-label">A</label>
+                    <select id="to" class="form-select form-control" [(ngModel)]="to" name="to" 
+                            [ngClass]="{'border-danger': a.invalid && (a.dirty || a.touched)}" required #a="ngModel">
+                      <option *ngFor="let d of divisas" [ngValue]="d.codigo">{{ d.nombre }}</option>
+                    </select>
+                    <div *ngIf="a.invalid && (a.dirty || a.touched) && a.errors?.['required']" class="form-text text-danger">
+                        <i class="bi bi-exclamation-circle"></i> Seleccione divisa.
+                    </div>
+                </div>
+                <h5>Resultado</h5>
+                <div class="mb-3 resultado text-center">
+                    {{ conversion | currency: to }}
+                </div>
+                <div class="text-center mt-5">
+                    <button [disabled]="!divisaForm.form.valid" (click)="convertirDivisa()" type="submit" class="btn btn-secondary">Convertir</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
