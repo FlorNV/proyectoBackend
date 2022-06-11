@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Transaccion } from 'src/app/models/transaccion';
+import { TransaccionService } from 'src/app/services/transaccion.service';
 
 @Component({
   selector: 'app-transacciones',
@@ -7,9 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TransaccionesComponent implements OnInit {
 
-  constructor() { }
+  transacciones!: Array<Transaccion>;
+
+  constructor(private transaccionService: TransaccionService, private router: Router) { 
+    this.obtenerTransacciones();
+  }
 
   ngOnInit(): void {
   }
 
+  obtenerTransacciones(){
+    this.transaccionService.getTransacciones().subscribe(
+      result => {
+        console.log(result);
+      }
+    )
+  }
+
+  llamarFormAgregarTransaccion(){
+    this.router.navigate(['transaccion-form', 0]);
+  }
 }

@@ -20,7 +20,10 @@ transaccionCtrl.getTransacciones = async (req, res) => {
 }
 
 transaccionCtrl.getHistorico = async (req, res) => {
-    var historico = await Transaccion.find({emailCliente: req.params.emailCliente});
+    console.log(req.query.email);
+    // console.log(req.params.email);
+    var historico = await Transaccion.find({emailCliente: req.query.email});
+    // var historico = await Transaccion.find({emailCliente: req.params.email});
     res.json(historico);
 }
 

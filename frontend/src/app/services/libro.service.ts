@@ -8,7 +8,7 @@ import { Libro } from '../models/libro';
 })
 export class LibroService {
 
-  urlBase: string = 'http://localhost:3000/api/libros'
+  urlBase: string = 'http://localhost:3000/api/libros';
 
   constructor(private _http: HttpClient) { }
 
