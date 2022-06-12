@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { from } from 'rxjs';
 import { Divisa } from 'src/app/models/divisa';
 import { Transaccion } from 'src/app/models/transaccion';
 import { TransaccionService } from 'src/app/services/transaccion.service';
@@ -24,7 +23,7 @@ export class TransaccionFormComponent implements OnInit {
 
   constructor(private transaccionService: TransaccionService, private router: Router, 
     private activatedRoute: ActivatedRoute) { 
-      this.obtenerDivisas();
+      // this.obtenerDivisas();
   }
 
   ngOnInit(): void {

@@ -28,9 +28,10 @@ transaccionCtrl.getHistorico = async (req, res) => {
 }
 
 transaccionCtrl.getTransaccionesByMoneda = async (req, res) => {
-    var mOrigen = req.params.origen;
-    var mDestino = req.params.destino;
-    var transacciones = await Transaccion.find({monedaOrigen: mOrigen, monedaDestino: mDestino});
+    // var mOrigen = req.params.origen;
+    // var mDestino = req.params.destino;
+    criteria = {monedaOrigen: req.query.origen, monedaDestino: req.query.destino}
+    var transacciones = await Transaccion.find(criteria);
     res.json(transacciones);
 }
 
