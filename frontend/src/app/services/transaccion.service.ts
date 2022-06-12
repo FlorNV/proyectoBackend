@@ -71,4 +71,18 @@ export class TransaccionService {
     }
     return this._http.get(this.urlBase, options);
   }
+
+  getTransaccionesByMoneda(origen: string, destino: string): Observable<any>{
+    let parametros = new HttpParams();
+    parametros = parametros.append('origen', origen);
+    parametros = parametros.append('destino', destino);
+
+    const options = {
+      headers: new HttpHeaders({
+
+      }),
+      params: parametros
+    }
+    return this._http.get(this.urlBase + '/por-moneda/', options);
+  }
 }

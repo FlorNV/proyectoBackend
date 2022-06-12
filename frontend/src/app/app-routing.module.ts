@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'transaccion-form/:id', component: TransaccionFormComponent },
   { path: 'pasajes', component: PasajesComponent },
   { path: 'pasaje-form/:id', component: PasajeFormComponent },
-  { path: '**', pathMatch: 'full', redirectTo: 'libros' },
+  { path: '**', pathMatch: 'full', redirectTo: 'libros' }
 ];
 
 @NgModule({
