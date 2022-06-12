@@ -1,1 +1,85 @@
-<p>pasajes works!</p>
+<div class="container-fluid py-5">
+    <div class="row g-5 mx-4">
+      <div class="col-md-6 col-lg-8">
+        <h5 class="bg-azul mb-0 px-5 py-3 rounded-top">Filtros</h5>
+        <div class="px-5 py-4 bg-white rounded rounded-3">
+            <form #consultaForm="ngForm">
+                <div class="row">
+                    <label for="inputEmail3" class="col-4 col-lg-2 col-form-label">Categoría:</label>
+                    <div class="col-8 col-lg-4">
+                        <select id="categoria" class="form-select form-control" [(ngModel)]="categoria" name="categoria" required #cat="ngModel"
+                            [ngClass]="{'border-danger': cat.invalid && (cat.dirty || cat.touched)}">
+                            <option value="a">Adulto</option>
+                            <option value="m">Menor</option>
+                            <option value="j">Jubilado</option>
+                        </select>
+                        <div *ngIf="cat.invalid && (cat.dirty || cat.touched) && cat.errors?.['required']" class="form-text text-danger">
+                            <i class="bi bi-exclamation-circle"></i> Seleccione categoría.
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mt-3 mt-lg-0">
+                        <button (click)="cargarPasajesPorCategoria()" [disabled]="!consultaForm.form.valid" type="submit" class="btn bg-azul">Aplicar</button>
+                        <button (click)="cargarPasajes()" type="submit" class="btn bg-coral ms-4">Quitar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <h5 class="bg-azul mb-0 px-5 py-3 rounded-top">Nuevo Pasaje</h5>
+        <div class="px-5 py-4 bg-white rounded rounded-3">
+            <button (click)="llamarFormAgregarPasaje()"  type="submit" class="btn bg-coral">
+                <i class="bi bi-plus-circle me-3"></i>Agregar Pasaje
+            </button>
+        </div>
+      </div>
+      <div class="col-12">
+        <h5 class="bg-azul mb-0 px-5 py-3 rounded-top">Resgistro de Pasajes</h5>
+        <div class="px-5 py-4 bg-white rounded-bottom">
+            <table datatable class="table table-striped table-bordered" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                <thead class="bg-azul">
+                    <tr class="align-text-middle">
+                        <th rowspan="2">ID</th>
+                        <th rowspan="2">Precio</th>
+                        <th rowspan="2">Categoria Pasajero</th>
+                        <th rowspan="2">Fecha de compra</th>
+                        <th rowspan="2">Acciones</th>
+                        <th colspan="5">Pasajero</th>
+                    </tr>
+                    <tr class="align-text-middle">
+                        <th>ID</th>
+                        <th>Apellido</th>
+                        <th>Nombre</th>
+                        <th>DNI</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of pasajes">
+                        <td>{{item._id}}</td>
+                        <td>{{item.precioPasaje | currency}}</td>
+                        <td>{{item.categoriaPasajero}}</td>
+                        <td>{{item.fechaCompra}}</td>
+                        <td>
+                            <button (click)="editarPasaje(item)" type="submit" class="btn bg-azul d-block m-auto mt-1">
+                                <i class="bi bi-pen"></i>
+                            </button>
+                            <button (click)="eliminarPasaje(item)" type="submit" class="btn bg-coral d-block m-auto mt-1">
+                                <i class="bi bi-trash3"></i>
+                            </button>
+                        </td>
+
+                        <td>{{item.pasajero._id}}</td>
+                        <td>{{item.pasajero.apellido}}</td>
+                        <td>{{item.pasajero.nombre}}</td>
+                        <td>{{item.pasajero.nro_documento}}</td>
+                        <td>{{item.pasajero.email}}</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                </tfoot>
+            </table>
+        </div>
+      </div>
+    </div>
+</div>

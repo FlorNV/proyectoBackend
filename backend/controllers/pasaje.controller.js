@@ -54,7 +54,7 @@ pasajeCtrl.editPasaje = async (req, res) => {
 }
 
 pasajeCtrl.getPasajerosByCategoria = async (req, res) => {
-    var pasajeros = await Pasaje.find({categoriaPasajero: req.params.categoria});
+    var pasajeros = await Pasaje.find({categoriaPasajero: req.query.categoria});
     res.json(pasajeros);
 }
 
