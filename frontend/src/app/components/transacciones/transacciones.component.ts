@@ -24,7 +24,7 @@ export class TransaccionesComponent implements OnInit, OnDestroy {
   destino!: string;
 
   constructor(private transaccionService: TransaccionService, private router: Router) { 
-    this.obtenerDivisas();
+    // this.obtenerDivisas();
   }
 
   ngOnInit(): void {
@@ -85,8 +85,8 @@ export class TransaccionesComponent implements OnInit, OnDestroy {
 
   rerender(): void {
     this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-       dtInstance.destroy();
-       this.dtTrigger.next(undefined);     
+      dtInstance.destroy();
+      this.dtTrigger.next(undefined);     
     });
   }
 

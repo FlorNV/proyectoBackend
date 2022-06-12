@@ -9,8 +9,8 @@ app.use(cors({origin: 'http://localhost:4200'}));
 
 app.use('/api/libros', require('./routes/libro.route.js'));
 app.use('/api/transacciones', require('./routes/transaccion.route.js'));
-app.use('/api/viajes/persona', require('./routes/persona.route.js'));
-app.use('/api/viajes/pasaje', require('./routes/pasaje.route.js'));
+app.use('/api/viajes/personas', require('./routes/persona.route.js'));
+app.use('/api/viajes/pasajes', require('./routes/pasaje.route.js'));
 
 app.set('port', process.env.PORT || 3000);
 
