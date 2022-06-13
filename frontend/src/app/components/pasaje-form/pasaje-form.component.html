@@ -1,1 +1,63 @@
-<p>pasaje-form works!</p>
+<div class="container py-5">
+    <form #pasajeForm="ngForm" method="post" class="row gy-4 bg-white px-5 py-4 mx-5 rounded-3">
+        <h3 class="col-12">Nuevo Pasaje</h3>
+
+        <div class="col-md-6">
+            <label for="fecha" class="form-label">Fecha</label>
+            <input type="date" id="fecha" class="form-control" name="fecha"
+            [value]="pasaje.fechaCompra | date: 'yyyy-MM-dd'" disabled>
+        </div>
+
+        <div class="col-md-6">
+            <label for="pasajero" class="form-label">Pasajero</label>
+            <select id="pasajero" class="form-select form-control" [(ngModel)]="pasaje.pasajero" name="pasajero" required #pasajero="ngModel"
+                [ngClass]="{'border-danger': pasajero.invalid && (pasajero.dirty || pasajero.touched)}">
+                <option *ngFor="let p of personas" [ngValue]="p._id">{{p.apellido}}, {{p.nombre}}</option>
+            </select>
+            <div *ngIf="pasajero.invalid && (pasajero.dirty || pasajero.touched) && pasajero.errors?.['required']" class="form-text text-danger">
+                <i class="bi bi-exclamation-circle"></i> Seleccione Pasajero.
+            </div>
+        </div>
+
+        <div class="col-md-6">
+          <label for="precio" class="form-label">Precio</label>
+          <input (change)="mostrarTotal()" type="number" id="precio" class="form-control" placeholder="Ingresa Precio" 
+          [(ngModel)]="pasaje.precioPasaje" name="precio" required min="1" #precio="ngModel"
+          [ngClass]="{'border-danger': precio.invalid && (precio.dirty || precio.touched)}">
+  
+          <div *ngIf="precio.invalid && (precio.dirty || precio.touched)">
+            <div *ngIf="precio.errors?.['required']" class="form-text text-danger">
+              <i class="bi bi-exclamation-circle"></i> El precio es requerido.
+            </div>
+            <div *ngIf="precio.errors?.['min']" class="form-text text-danger">
+              <i class="bi bi-exclamation-circle"></i> El precio debe ser mayor a 0.
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-md-6">
+            <label for="categoria" class="form-label">Categoría</label>
+            <select (change)="mostrarTotal()" id="categoria" class="form-select form-control" [(ngModel)]="pasaje.categoriaPasajero" name="categoria" required #cat="ngModel"
+                [ngClass]="{'border-danger': cat.invalid && (cat.dirty || cat.touched)}">
+                <option value="a">Adulto</option>
+                <option value="m">Menor</option>
+                <option value="j">Jubilado</option>
+            </select>
+            <div *ngIf="cat.invalid && (cat.dirty || cat.touched) && cat.errors?.['required']" class="form-text text-danger">
+                <i class="bi bi-exclamation-circle"></i> Seleccione categoría.
+            </div>
+        </div>
+
+        <div *ngIf="ingresados" class="col-5 mt-4 mx-auto">
+            <p class="form-label p-3 border text-center bg-light text-secondary total">
+                Total a pagar: {{ calcularTotal() | currency }}
+            </p>
+        </div>
+
+        <div class="text-center my-4">
+            <button *ngIf="accion=='new'" (click)="agregarPasaje(); quitarFiltros(pasajeForm)" type="submit" class="btn bg-azul px-4" [disabled]="!pasajeForm.valid">Agregar Pasaje</button>
+            <button *ngIf="accion=='update'" (click)="actualizarPasaje(); quitarFiltros(pasajeForm)" type="submit" class="btn bg-azul px-4" [disabled]="!pasajeForm.valid">Actualizar Pasaje</button>
+            <button (click)="cancelar()" type="submit" class="btn bg-coral px-4 ms-4">Cancelar</button>
+          </div>
+    </form>
+</div>

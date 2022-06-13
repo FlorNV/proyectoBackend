@@ -1,0 +1,22 @@
+.titulo {
+    color: #3D5A80;
+    font-size: 1.5rem;
+}
+
+.align-text-middle {
+    vertical-align: middle;
+}
+
+.bg-azul {
+    background-color: #3D5A80;
+    color: #fff;
+}
+
+.bg-coral {
+    background-color: #EE6C4D;
+    color: #fff;
+}
+
+.total {
+    font-size: 1.5rem;
+}

@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
@@ -21,7 +22,7 @@ export class PasajesComponent implements OnInit, OnDestroy {
   categoria!: string;
 
   constructor(private pasajeService: PasajeService, private router: Router) { 
-    // this.cargarPasajesPorCategoria();
+    
   }
   
   ngOnInit(): void {
@@ -40,6 +41,7 @@ export class PasajesComponent implements OnInit, OnDestroy {
         result.forEach((element: any) => {
           let pasaje = new Pasaje();
           Object.assign(pasaje, element);
+          pasaje.fechaCompra = new Date(element.fechaCompra);
           this.pasajes.push(pasaje);
         });
         this.rerender();
@@ -54,6 +56,7 @@ export class PasajesComponent implements OnInit, OnDestroy {
         result.forEach((element: any) => {
           let pasaje = new Pasaje();
           Object.assign(pasaje, element);
+          pasaje.fechaCompra = new Date(element.fechaCompra);
           this.pasajes.push(pasaje);
         });
         this.rerender();
@@ -85,6 +88,23 @@ export class PasajesComponent implements OnInit, OnDestroy {
   }
 
   eliminarPasaje(pasaje: Pasaje){
-    this.router.navigate(['pasaje-form', pasaje._id]);
+    this.pasajeService.deletePasaje(pasaje).subscribe(
+      result => {
+        if(result.status == '1'){
+          alert(result.msg);
+        }
+        location.reload();
+      },
+      error => {
+        if(error.status == '0'){
+          alert(error.msg);
+        }
+      }
+    )
+  }
+
+  quitarFiltros(form: NgForm){
+    this.cargarPasajes();
+    form.resetForm();
   }
 }

@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { Transaccion } from 'src/app/models/transaccion';
 import { TransaccionService } from 'src/app/services/transaccion.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-transacciones',
@@ -92,5 +93,10 @@ export class TransaccionesComponent implements OnInit, OnDestroy {
 
   llamarFormAgregarTransaccion(){
     this.router.navigate(['transaccion-form', 0]);
+  }
+
+  quitarFiltros(form: NgForm){
+    this.cargarTransacciones();
+    form.resetForm();
   }
 }
