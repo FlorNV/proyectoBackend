@@ -23,7 +23,7 @@ export class TransaccionFormComponent implements OnInit {
 
   constructor(private transaccionService: TransaccionService, private router: Router, 
     private activatedRoute: ActivatedRoute) { 
-      // this.obtenerDivisas();
+      this.obtenerDivisas();
   }
 
   ngOnInit(): void {

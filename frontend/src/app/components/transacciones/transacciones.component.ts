@@ -25,7 +25,7 @@ export class TransaccionesComponent implements OnInit, OnDestroy {
   destino!: string;
 
   constructor(private transaccionService: TransaccionService, private router: Router) { 
-    // this.obtenerDivisas();
+    this.obtenerDivisas();
   }
 
   ngOnInit(): void {

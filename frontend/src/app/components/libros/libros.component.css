@@ -49,10 +49,12 @@
     height: 1rem;
     width: 1rem;
     background-color: rgb(238, 108, 77, 0.5);
+    transition: background-color 0.3s ease;
 }
 
 .indicator-item:hover {
     cursor: pointer;
+    background-color: rgb(238, 108, 77, 0.7);
 }
 
 .active {
