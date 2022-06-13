@@ -4,7 +4,7 @@ export class Pasaje {
     
     _id!: string;
     categoriaPasajero!: string;
-    fechaCompra!: string;
+    fechaCompra!: Date;
     pasajero!: Persona;
     precioPasaje!: number;
 

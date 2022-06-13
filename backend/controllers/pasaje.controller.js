@@ -37,6 +37,18 @@ pasajeCtrl.deletePasaje = async (req, res) => {
     }
 }
 
+pasajeCtrl.getPasaje = async (req, res) => {
+    try {
+        var pasaje = await Pasaje.findById(req.params.id);
+        res.status(200).json(pasaje);
+    } catch (error) {
+        res.status(404).json({
+            'status': '0',
+            'msg': 'No encontrado.'
+        })
+    }
+}
+
 pasajeCtrl.editPasaje = async (req, res) => {
     const vPasaje = new Pasaje(req.body);
     try {
@@ -53,9 +65,9 @@ pasajeCtrl.editPasaje = async (req, res) => {
     }
 }
 
-pasajeCtrl.getPasajerosByCategoria = async (req, res) => {
-    var pasajeros = await Pasaje.find({categoriaPasajero: req.query.categoria});
-    res.json(pasajeros);
+pasajeCtrl.getPasajesByCategoria = async (req, res) => {
+    var pasajes = await Pasaje.find({categoriaPasajero: req.query.categoria}).populate("pasajero");
+    res.json(pasajes);
 }
 
 module.exports = pasajeCtrl;

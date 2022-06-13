@@ -2,21 +2,31 @@
     vertical-align: middle;
 }
 
-.btn-azul {
-    background-color: #3D5A80 !important;
-    color: #fff;
-}
-
-.btn-coral {
-    background-color: #EE6C4D !important;
-    color: #fff;
-}
-
-h2, label {
-    color: #3D5A80;
-}
-
 thead {
     background-color: #3D5A80;
+    color: #fff;
+}
+
+
+.titulo {
+    color: #3D5A80;
+    font-size: 1.5rem;
+}
+
+.align-text-middle {
+    vertical-align: middle;
+}
+
+thead tr th {
+    text-align: center !important;
+}
+
+.bg-azul {
+    background-color: #3D5A80;
+    color: #fff;
+}
+
+.bg-coral {
+    background-color: #EE6C4D;
     color: #fff;
 }

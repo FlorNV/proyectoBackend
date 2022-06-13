@@ -5,7 +5,7 @@
         <div class="px-5 py-4 bg-white rounded rounded-3">
             <form #consultaForm="ngForm">
                 <div class="row">
-                    <label for="inputEmail3" class="col-4 col-lg-2 col-form-label">Categoría:</label>
+                    <label for="categoria" class="col-4 col-lg-2 col-form-label">Categoría:</label>
                     <div class="col-8 col-lg-4">
                         <select id="categoria" class="form-select form-control" [(ngModel)]="categoria" name="categoria" required #cat="ngModel"
                             [ngClass]="{'border-danger': cat.invalid && (cat.dirty || cat.touched)}">
@@ -19,7 +19,7 @@
                     </div>
                     <div class="col-lg-6 mt-3 mt-lg-0">
                         <button (click)="cargarPasajesPorCategoria()" [disabled]="!consultaForm.form.valid" type="submit" class="btn bg-azul">Aplicar</button>
-                        <button (click)="cargarPasajes()" type="submit" class="btn bg-coral ms-4">Quitar</button>
+                        <button (click)="quitarFiltros(consultaForm)" type="submit" class="btn bg-coral ms-4">Quitar</button>
                     </div>
                 </div>
             </form>
@@ -59,7 +59,7 @@
                         <td>{{item._id}}</td>
                         <td>{{item.precioPasaje | currency}}</td>
                         <td>{{item.categoriaPasajero}}</td>
-                        <td>{{item.fechaCompra}}</td>
+                        <td>{{item.fechaCompra | date: 'dd/MM/yyyy'}}</td>
                         <td>
                             <button (click)="editarPasaje(item)" type="submit" class="btn bg-azul d-block m-auto mt-1">
                                 <i class="bi bi-pen"></i>
